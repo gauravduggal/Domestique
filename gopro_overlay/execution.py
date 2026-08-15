@@ -3,6 +3,7 @@ from __future__ import annotations
 import subprocess
 
 from gopro_overlay.log import log
+from gopro_overlay.process import NO_WINDOW_KWARGS
 
 
 class InProcessExecution:
@@ -16,9 +17,9 @@ class InProcessExecution:
             log(f"Executing {cmd}")
             if self.redirect:
                 with open(self.redirect, "w") as std:
-                    process = self.popen(cmd, stdin=subprocess.PIPE, stdout=std, stderr=std)
+                    process = self.popen(cmd, stdin=subprocess.PIPE, stdout=std, stderr=std, **NO_WINDOW_KWARGS)
             else:
-                process = self.popen(cmd, stdin=subprocess.PIPE, stdout=None, stderr=None)
+                process = self.popen(cmd, stdin=subprocess.PIPE, stdout=None, stderr=None, **NO_WINDOW_KWARGS)
 
             try:
                 yield process.stdin

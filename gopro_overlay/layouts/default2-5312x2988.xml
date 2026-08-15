@@ -1,0 +1,127 @@
+<layout>
+
+  <!-- Bottom-center premium HUD -->
+  <composite x="2080" y="2550" name="bottom_center_colored_hud">
+
+    <!-- Main glass panel -->
+    <frame
+        x="0"
+        y="0"
+        width="1180"
+        height="245"
+        outline="255,255,255,65"
+        cr="28"
+        opacity="0.11">
+
+      <!-- Hero speed -->
+      <component type="text" x="70" y="26" size="22">SPEED</component>
+      <component
+          type="metric"
+          x="55"
+          y="52"
+          metric="speed"
+          units="mph"
+          dp="0"
+          size="148"/>
+      <component type="text" x="70" y="185" size="22">MPH</component>
+
+      <!-- Secondary KPH -->
+      <component type="text" x="395" y="44" size="18">KPH</component>
+      <component
+          type="metric"
+          x="392"
+          y="73"
+          metric="speed"
+          units="kph"
+          dp="0"
+          size="60"/>
+
+      <!-- Accent line: speed -->
+      <frame
+          x="620"
+          y="24"
+          width="110"
+          height="8"
+          outline="0,210,255,210"
+          cr="4"
+          opacity="0.35"/>
+
+      <!-- Power -->
+      <component type="text" x="620" y="42" size="18">POWER</component>
+      <component
+          type="metric"
+          x="620"
+          y="70"
+          metric="power"
+          dp="0"
+          size="50"/>
+      <component type="text" x="620" y="122" size="16">W</component>
+
+      <!-- Accent line: power -->
+      <frame
+          x="770"
+          y="24"
+          width="110"
+          height="8"
+          outline="255,140,0,220"
+          cr="4"
+          opacity="0.35"/>
+
+      <!-- Gradient -->
+      <component type="text" x="770" y="42" size="18">GRADE</component>
+      <component
+          type="metric"
+          x="770"
+          y="70"
+          metric="gradient"
+          dp="1"
+          size="50"/>
+      <component type="text" x="770" y="122" size="16">%</component>
+
+      <!-- Accent line: cadence -->
+      <frame
+          x="920"
+          y="24"
+          width="110"
+          height="8"
+          outline="170,255,60,220"
+          cr="4"
+          opacity="0.35"/>
+
+      <!-- Cadence -->
+      <component type="text" x="920" y="42" size="18">CAD</component>
+      <component
+          type="metric"
+          x="920"
+          y="70"
+          metric="cadence"
+          dp="0"
+          size="50"/>
+      <component type="text" x="920" y="122" size="16">RPM</component>
+
+      <!-- Accent line: HR -->
+      <frame
+          x="1060"
+          y="24"
+          width="80"
+          height="8"
+          outline="255,70,90,220"
+          cr="4"
+          opacity="0.35"/>
+
+      <!-- Heart rate -->
+      <component type="text" x="1060" y="42" size="18">HR</component>
+      <component
+          type="metric"
+          x="1060"
+          y="70"
+          metric="hr"
+          dp="0"
+          size="50"/>
+      <component type="text" x="1060" y="122" size="16">BPM</component>
+
+    </frame>
+
+  </composite>
+
+</layout>

@@ -1,0 +1,26 @@
+<layout>
+  <composite x="416" y="573" name="bottom_center_dashboard_safe">
+    <frame x="0" y="0" width="448" height="63" outline="40,120,255,170" cr="7" opacity="0.4">
+      <component type="text" x="52" y="7" size="11">MPH</component>
+      <component type="text" x="270" y="7" size="11">KPH</component>
+      <component type="metric" x="40" y="21" metric="speed" units="mph" dp="0" size="41"/>
+      <component type="metric" x="257" y="21" metric="speed" units="kph" dp="0" size="41"/>
+    </frame>
+    <frame x="0" y="74" width="105" height="53" outline="40,120,255,145" cr="6" opacity="0.4">
+      <component type="text" x="7" y="6" size="9">POWER</component>
+      <component type="metric" x="7" y="18" metric="power" dp="0" size="25"/>
+    </frame>
+    <frame x="114" y="74" width="105" height="53" outline="40,120,255,145" cr="6" opacity="0.4">
+      <component type="text" x="7" y="6" size="9">SLOPE %</component>
+      <component type="metric" x="7" y="18" metric="gradient" dp="1" size="25"/>
+    </frame>
+    <frame x="229" y="74" width="105" height="53" outline="40,120,255,145" cr="6" opacity="0.4">
+      <component type="text" x="7" y="6" size="9">CADENCE</component>
+      <component type="metric" x="7" y="18" metric="cadence" dp="0" size="25"/>
+    </frame>
+    <frame x="343" y="74" width="105" height="53" outline="40,120,255,145" cr="6" opacity="0.4">
+      <component type="text" x="7" y="6" size="9">HR</component>
+      <component type="metric" x="7" y="18" metric="hr" dp="0" size="25"/>
+    </frame>
+  </composite>
+</layout>

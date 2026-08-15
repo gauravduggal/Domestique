@@ -3,9 +3,9 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "gopro-overlay"
+name = "domestique"
 version = "0.134.0"
-description = "Overlay graphics dashboards onto GoPro footage, or create videos from GPX or FIT files"
+description = "Domestique: overlay cycling dashboards onto GoPro footage, or create videos from GPX or FIT files"
 readme = "README-PYPI.md"
 requires-python = ">=3.11"
 license = "GPL-3.0-or-later"
@@ -36,8 +36,8 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/time4tea/gopro-dashboard-overlay"
-Source = "https://github.com/time4tea/gopro-dashboard-overlay"
+Homepage = "https://github.com/gauravduggal/Domestique"
+Source = "https://github.com/gauravduggal/Domestique"
 
 [project.optional-dependencies]
 cairo=["pycairo==1.28.0"]
@@ -60,6 +60,8 @@ script-files= [
     "bin/gopro-dashboard.py",
     "bin/gopro-extract.py",
     "bin/gopro-join.py",
+    "bin/gopro-join-list.py",
+    "bin/gopro-dashboard-gui.py",
     "bin/gopro-layout.py",
     "bin/gopro-rename.py",
     "bin/gopro-to-csv.py",

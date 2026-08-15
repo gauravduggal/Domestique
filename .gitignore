@@ -1,11 +1,17 @@
 venv/
 venv-pypy/
+.venv/
 build/
 .idea/
 
 render/*
 dist/
 *.egg-info/
+
+# Packaged Domestique app output (see packaging/README.md) - regenerate with
+# packaging/build.ps1 or packaging/build.sh, never commit the built app itself.
+dist/Domestique/
+dist/Domestique-portable.zip
 
 *.so
 

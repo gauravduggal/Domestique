@@ -1,0 +1,183 @@
+{
+    "av1_nvenc_5k":  {
+                              "input":  [
+                                            "-hwaccel",
+                                            "d3d11va"
+                                        ],
+                              "output":  [
+                                             "-vcodec",
+                                             "av1_nvenc",
+                                             "-preset",
+                                             "p5",
+                                             "-tune",
+                                             "hq",
+                                             "-rc",
+                                             "vbr",
+                                             "-cq",
+                                             "18",
+                                             "-b:v",
+                                             "0",
+                                             "-spatial-aq",
+                                             "1",
+                                             "-aq-strength",
+                                             "8",
+                                             "-color_range",
+                                             "pc",
+                                             "-colorspace",
+                                             "bt709",
+                                             "-color_primaries",
+                                             "bt709",
+                                             "-color_trc",
+                                             "bt709",
+                                             "-movflags",
+                                             "faststart"
+                                         ]
+                          },
+    "av1_cpudec_cpuenc":  {
+                              "input":  [
+
+                                        ],
+                              "output":  [
+                                             "-c:v",
+                                             "libsvtav1",
+                                             "-preset",
+                                             "6",
+                                             "-crf",
+                                             "16",
+                                             "-pix_fmt",
+                                             "yuv420p",
+                                             "-color_range",
+                                             "pc",
+                                             "-colorspace",
+                                             "bt709",
+                                             "-color_primaries",
+                                             "bt709",
+                                             "-color_trc",
+                                             "bt709",
+                                             "-movflags",
+                                             "faststart"
+                                         ]
+                          },
+    "av1_nvenc_4k":  {
+                              "input":  [
+                                            "-hwaccel",
+                                            "d3d11va"
+                                        ],
+                              "filter":  "[0:v]scale=3840:2160[main];[1:v]scale=3840:2160[ovl];[main][ovl]overlay",
+                              "output":  [
+                                             "-vcodec",
+                                             "av1_nvenc",
+                                             "-preset",
+                                             "p5",
+                                             "-tune",
+                                             "hq",
+                                             "-rc",
+                                             "vbr",
+                                             "-cq",
+                                             "18",
+                                             "-b:v",
+                                             "0",
+                                             "-spatial-aq",
+                                             "1",
+                                             "-aq-strength",
+                                             "8",
+                                             "-color_range",
+                                             "pc",
+                                             "-colorspace",
+                                             "bt709",
+                                             "-color_primaries",
+                                             "bt709",
+                                             "-color_trc",
+                                             "bt709",
+                                             "-movflags",
+                                             "faststart"
+                                         ]
+                          },
+    "av1_cpudec_cpuenc_4k":  {
+                              "input":  [
+
+                                        ],
+                              "filter":  "[0:v]scale=3840:2160[main];[1:v]scale=3840:2160[ovl];[main][ovl]overlay",
+                              "output":  [
+                                             "-c:v",
+                                             "libsvtav1",
+                                             "-preset",
+                                             "6",
+                                             "-crf",
+                                             "16",
+                                             "-pix_fmt",
+                                             "yuv420p",
+                                             "-color_range",
+                                             "pc",
+                                             "-colorspace",
+                                             "bt709",
+                                             "-color_primaries",
+                                             "bt709",
+                                             "-color_trc",
+                                             "bt709",
+                                             "-movflags",
+                                             "faststart"
+                                         ]
+                          },
+    "av1_nvenc_720p":  {
+                              "input":  [
+                                            "-hwaccel",
+                                            "d3d11va"
+                                        ],
+                              "filter":  "[0:v]scale=1280:720[main];[main][1:v]overlay",
+                              "output":  [
+                                             "-vcodec",
+                                             "av1_nvenc",
+                                             "-preset",
+                                             "p5",
+                                             "-tune",
+                                             "hq",
+                                             "-rc",
+                                             "vbr",
+                                             "-cq",
+                                             "18",
+                                             "-b:v",
+                                             "0",
+                                             "-spatial-aq",
+                                             "1",
+                                             "-aq-strength",
+                                             "8",
+                                             "-color_range",
+                                             "pc",
+                                             "-colorspace",
+                                             "bt709",
+                                             "-color_primaries",
+                                             "bt709",
+                                             "-color_trc",
+                                             "bt709",
+                                             "-movflags",
+                                             "faststart"
+                                         ]
+                          },
+    "av1_cpudec_cpuenc_720p":  {
+                              "input":  [
+
+                                        ],
+                              "filter":  "[0:v]scale=1280:720[main];[main][1:v]overlay",
+                              "output":  [
+                                             "-c:v",
+                                             "libsvtav1",
+                                             "-preset",
+                                             "6",
+                                             "-crf",
+                                             "16",
+                                             "-pix_fmt",
+                                             "yuv420p",
+                                             "-color_range",
+                                             "pc",
+                                             "-colorspace",
+                                             "bt709",
+                                             "-color_primaries",
+                                             "bt709",
+                                             "-color_trc",
+                                             "bt709",
+                                             "-movflags",
+                                             "faststart"
+                                         ]
+                          }
+}

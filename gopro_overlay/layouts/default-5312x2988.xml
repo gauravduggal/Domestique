@@ -1,0 +1,120 @@
+<layout>
+
+  <!-- Bottom-center compact dashboard, extra safe for vertical crop -->
+  <composite x="2020" y="2520" name="bottom_center_dashboard_safe">
+
+    <!-- Speed card -->
+    <frame
+        x="0"
+        y="0"
+        width="1280"
+        height="165"
+        outline="40,120,255,170"
+        cr="20"
+        opacity="0.4">
+
+      <component type="text" x="150" y="18" size="30">MPH</component>
+      <component type="text" x="770" y="18" size="30">KPH</component>
+
+      <component
+          type="metric"
+          x="115"
+          y="55"
+          metric="speed"
+          units="mph"
+          dp="0"
+          size="108"/>
+
+      <component
+          type="metric"
+          x="735"
+          y="55"
+          metric="speed"
+          units="kph"
+          dp="0"
+          size="108"/>
+    </frame>
+
+    <!-- Power -->
+    <frame
+        x="0"
+        y="200"
+        width="300"
+        height="138"
+        outline="40,120,255,145"
+        cr="16"
+        opacity="0.4">
+
+      <component type="text" x="20" y="16" size="23">POWER</component>
+      <component
+          type="metric"
+          x="20"
+          y="48"
+          metric="power"
+          dp="0"
+          size="66"/>
+    </frame>
+
+    <!-- Gradient -->
+    <frame
+        x="327"
+        y="200"
+        width="300"
+        height="138"
+        outline="40,120,255,145"
+        cr="16"
+        opacity="0.4">
+
+      <component type="text" x="20" y="16" size="23">SLOPE %</component>
+      <component
+          type="metric"
+          x="20"
+          y="48"
+          metric="gradient"
+          dp="1"
+          size="66"/>
+    </frame>
+
+    <!-- Cadence -->
+    <frame
+        x="654"
+        y="200"
+        width="300"
+        height="138"
+        outline="40,120,255,145"
+        cr="16"
+        opacity="0.4">
+
+      <component type="text" x="20" y="16" size="23">CADENCE</component>
+      <component
+          type="metric"
+          x="20"
+          y="48"
+          metric="cadence"
+          dp="0"
+          size="66"/>
+    </frame>
+
+    <!-- Heart rate -->
+    <frame
+        x="981"
+        y="200"
+        width="300"
+        height="138"
+        outline="40,120,255,145"
+        cr="16"
+        opacity="0.4">
+
+      <component type="text" x="20" y="16" size="23">HR</component>
+      <component
+          type="metric"
+          x="20"
+          y="48"
+          metric="hr"
+          dp="0"
+          size="66"/>
+    </frame>
+
+  </composite>
+
+</layout>

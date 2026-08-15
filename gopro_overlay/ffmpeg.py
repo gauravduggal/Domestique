@@ -10,7 +10,7 @@ from typing import Optional
 
 from gopro_overlay.execution import InProcessExecution
 from gopro_overlay.log import log
-from gopro_overlay.process import run, invoke
+from gopro_overlay.process import run, invoke, NO_WINDOW_KWARGS
 
 
 class FFMPEG:
@@ -74,7 +74,8 @@ class FFMPEG:
 
         deadline = datetime.datetime.now() + timeout
 
-        process = subprocess.Popen([self._path(), *args], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+        process = subprocess.Popen([self._path(), *args], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+                                    **NO_WINDOW_KWARGS)
         try:
             while True:
                 if datetime.datetime.now() > deadline:
