@@ -74,25 +74,6 @@ code-signed.
 Pick your GoPro clip(s), a FIT/GPX ride file, an encoding profile (`av1_nvenc_*` for an NVIDIA GPU,
 `av1_cpudec_cpuenc*` for CPU-only), a quality/speed preset, and hit **Start Render**.
 
-## Introduction Video
-
-[![Intro Video](https://img.youtube.com/vi/qTwPVjNXJ8o/0.jpg)](https://www.youtube.com/watch?v=qTwPVjNXJ8o)
-
-## Examples
-
-![Example - Chedder Gorge](examples/2022-05-15-example.png)
-![Example - Rallye Des Cimes](examples/2026-05-16-rallye-des-cimes-contrib-example.png)
-![Example - GoKarting](examples/2022-06-11-contrib-example.png)
-![Example - Light Plane Cockpit](examples/2022-07-19-contrib-example-plane.jpg)
-![Example - Skiing First Person](examples/2023-07-23-contrib-example-ski-pov.png)
-![Example - Skiing Drone](examples/2023-07-23-contrib-example-ski-drone.png)
-
-An Example of 'overlay only' mode, which generates movies from GPX files
-![Example Dashboard Image](examples/2022-11-24-gpx-only-overlay.png)
-
-Example from [examples/layout](examples/layout)
-![Example - Richmond Park with Cairo Widgets](examples/layout/layout-cairo-2704x1520.png)
-
 ## Map Styles
 
 Almost 30 different map styles are supported! - See [map styles](docs/maps/README.md) for more
@@ -221,25 +202,11 @@ venv/bin/gopro-join.py /media/sdcard/DCIM/100GOPRO/GH030170.MP4 /data/gopro/nice
 You can cut a section of the gopro file, with metadata.
 
 
-## Help Wanted
-
-- Adding additional graphics widgets, ideally using cairo.
-- Validation / Improvement of smoothing - e.g. Kalman Filters
-- Suggestions for handling acceleration and orientation data, this is parsed, but display options are few.
-
-## Work In Progress
-
-- Adding min/max/moving averages to metrics
-
 ## Related Software
 
 - https://github.com/Romancha/GPStitch - A VERY nice web user interface for this program.
 
 - https://github.com/julesgraus/interactiveGoProDashboardTool - An interactive helper to build the command line for the dashboard program
-
-## Known Bugs / Issues
-
-- Only tested on a GoPro Hero 9/11, that's all I have. Sample files for other devices are welcomed.
 
 ## Icons
 
