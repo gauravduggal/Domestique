@@ -202,12 +202,6 @@ venv/bin/gopro-join.py /media/sdcard/DCIM/100GOPRO/GH030170.MP4 /data/gopro/nice
 You can cut a section of the gopro file, with metadata.
 
 
-## Related Software
-
-- https://github.com/Romancha/GPStitch - A VERY nice web user interface for this program.
-
-- https://github.com/julesgraus/interactiveGoProDashboardTool - An interactive helper to build the command line for the dashboard program
-
 ## Icons
 
 Icon files in [icons](gopro_overlay/icons) are not covered by the MIT licence
@@ -217,23 +211,6 @@ Icon files in [icons](gopro_overlay/icons) are not covered by the MIT licence
 Data © [OpenStreetMap contributors](http://www.openstreetmap.org/copyright)
 
 Some Maps © [Thunderforest](http://www.thunderforest.com/)
-
-## References
-
-https://github.com/juanmcasillas/gopro2gpx
-
-https://github.com/JuanIrache/gopro-telemetry
-
-https://github.com/gopro/gpmf-parser
-
-https://coderunner.io/how-to-compress-gopro-movies-and-keep-metadata/
-
-## Other Related Software
-
-
-- https://github.com/progweb/gpx2video
-
-- https://github.com/JuanIrache/gopro-telemetry
 
 ## Upstream Engine Changelog
 
