@@ -1,20 +1,78 @@
 # Domestique
 
-### Create video overlays from GoPro Videos or any GPX/FIT file
+### A cycling-focused GoPro dashboard overlay tool
+
+Render speed, power, cadence, heart rate, and gradient straight onto your ride footage.
 
 <a href="https://github.com/time4tea/gopro-dashboard-overlay/discussions"><img alt="GitHub Discussions" src="https://img.shields.io/github/discussions/time4tea/gopro-dashboard-overlay?style=for-the-badge"></a>
 <a href="https://pypi.org/project/gopro-overlay/"><img alt="PyPI" src="https://img.shields.io/pypi/v/gopro-overlay?style=for-the-badge"></a>
 <a href="https://hub.docker.com/r/overlaydash/gopro-dashboard-overlay"><img alt="Docker" src="https://img.shields.io/docker/v/overlaydash/gopro-dashboard-overlay?label=Docker&style=for-the-badge"></a>
 
-Discuss on [GitHub Discussions](https://github.com/time4tea/gopro-dashboard-overlay/discussions)
+- Cycling-tuned dashboard layouts - speed, power, cadence, heart rate, gradient
+- Standalone GUI, packaged as a self-contained app - no Python install needed to run it
+- AV1 encoding profiles (GPU/NVENC and CPU/SVT-AV1) for 5K, 4K, and 720p output
+- Also works as a general GoPro/GPX/FIT overlay tool - multiple resolutions, most GoPro models, Linux/Mac/Windows
 
-- Overlaying exciting graphics onto GoPro videos with super-exact synchronization
-- Create videos from any GPX or FIT file - no GoPro required
-- Support multiple resolutions, most GoPro models, normal, timelapse & timewarp modes
-- Support GPUs to create movies at up to 17x realtime
-- Convert GoPro movie metadata to GPX or CSV files
-- Cut sections from GoPro movies (including metadata)
-- Linux, Mac, Windows!
+Domestique is a fork of [gopro-dashboard-overlay](https://github.com/time4tea/gopro-dashboard-overlay) - full
+credit to the original project for the underlying rendering engine. The badges above and much of the reference
+documentation below (map styles, XML layout format, `pip`/Docker install) still point at the upstream project.
+
+## Quick Start
+
+The easiest way to use Domestique is the packaged GUI - build it once, then just run the app, no Python needed
+after that. Full details (prerequisites, troubleshooting) are in [packaging/README.md](packaging/README.md).
+
+### 1. Generate the package
+
+**Windows** (PowerShell):
+```powershell
+.\packaging\build.ps1
+```
+
+**macOS/Linux:**
+```bash
+./packaging/build.sh
+```
+
+Both produce `dist/Domestique-portable.zip` - a self-contained build with the GUI, `ffmpeg`, layouts, and encoding
+profiles all bundled in.
+
+### 2. Install it
+
+The app is portable - extract it to wherever you want to keep it and run it from there. It doesn't need
+installing beyond that.
+
+**Windows** (PowerShell):
+```powershell
+Expand-Archive -Path dist\Domestique-portable.zip -DestinationPath "$env:LOCALAPPDATA\Domestique" -Force
+```
+This creates a `Domestique\` folder at the destination containing the app.
+
+**macOS/Linux:**
+```bash
+./packaging/install.sh
+# or install somewhere other than the ~/Applications default:
+./packaging/install.sh /opt/domestique
+```
+This unzips to a `Domestique/` folder at the destination and makes the bundled executables runnable.
+
+### 3. Run it
+
+**Windows:**
+```powershell
+& "$env:LOCALAPPDATA\Domestique\Domestique\gopro-dashboard-gui.exe"
+```
+(or just double-click `gopro-dashboard-gui.exe` in that folder)
+
+**macOS/Linux:** `install.sh` prints the exact path to run, e.g.:
+```bash
+~/Applications/Domestique/gopro-dashboard-gui
+```
+First launch on macOS may need a right-click → Open instead, to get past Gatekeeper since the app isn't
+code-signed.
+
+Pick your GoPro clip(s), a FIT/GPX ride file, an encoding profile (`av1_nvenc_*` for an NVIDIA GPU,
+`av1_cpudec_cpuenc*` for CPU-only), a quality/speed preset, and hit **Start Render**.
 
 ## Introduction Video
 
@@ -63,11 +121,14 @@ Install locally using `pip`, or use the provided Docker image
 Optional: Some widgets require the `cairo` library - which must be installed separately.
 
 
-### Installing and running with pip
+### Installing and running from source
+
+Domestique isn't published to PyPI - the [Quick Start](#quick-start) above (packaged GUI) is the easiest way to
+run it without setting up Python at all. To install from source instead:
 
 ```shell
 python -m venv venv
-venv/bin/pip install gopro-overlay
+venv/bin/pip install -e .
 ```
 
 The Roboto font needs to be installed on your system. You could install it with one of the following commands maybe.
@@ -207,35 +268,10 @@ https://coderunner.io/how-to-compress-gopro-movies-and-keep-metadata/
 
 - https://github.com/JuanIrache/gopro-telemetry
 
-## Latest Changes
+## Upstream Engine Changelog
 
-If you find any issues with new releases, please discuss in [GitHub Discussions](https://github.com/time4tea/gopro-dashboard-overlay/discussions)
-- 0.134.0 - [Fix] Don't crash when GRAV entries have wrong number of components (firmware bug workaround) - thanks [@joepetjr](https://github.com/joepetjr) for report & suggested fix
-  - [Fix] Fix typo in bbox calculation - thanks [@djm300](https://github.com/djm300)
-- 0.133.0 - [Enhancement] Chart - Add `width` and `marker-size`, better interpolation of datapoints at end of file, and use date from video file, with `--video-time-start video-start` - thanks to [@derFunk](https://github.com/derFunk) for contributing
-- 0.132.0 - [Enhancement] Use user-supplied unit pref for chart - thanks to [@DonkeyShine](https://github.com/DonkeyShine) for noticing
-- 0.131.0 [Enhancement] - Improved parsing of FIT files with gear changes thanks to  [@geomandolyn](https://github.com/geomandolyn) to raising issue & sample data.
-- 0.130.0 [Enhancement] - New capability to update the journey map & moving journey map - path and location styling.  Mulţumesc mult to [@andrei-micuda](https://github.com/andrei-micuda)
-  - [Hopefully no visible effect] Vendored / Copied in source code from geotiler as it's no longer compatible with new python versions & updated to be compatible. 
-- 0.129.0 [Enhancement] [Breaking] - Update python compatibility - Newly Compatible: 3.13, 3.14. No longer compatible 3.9, 3.10 
-- 0.128.0 [Enhancement] add layout default compatible ith DJI 2.5k resolution. Thanks to [@DonkeyShine](https://github.com/DonkeyShine) for suggestion.
-- 0.127.0 [Enhancement] Now support _respiration_ , _front_gear_num_ and _rear_gear_num fields in FIT files. Improved support for using DJI videos as files to be overlaid. 
-  - Thanks to [@prebbz](https://github.com/prebbz) [@DonkeyShine](https://github.com/DonkeyShine) 
-- 0.126.0 [Enhancement] New Motorspeed widgets - "msi" & "msi2" - See examples [docs/xml/examples/07-motor-speed-indicator/README.md](docs/xml/examples/07-motor-speed-indicator/README.md) - Thanks to [@JimmyS83](https://github.com/JimmyS83) for contributing.
-  - New metric `accel` which is computed from speed deltas, rather than gopro accelerometer. Thanks also to [@JimmyS83](https://github.com/JimmyS83)
-  - [Breaking] Ordering of fields in gopro-to-csv has changed, with addition of `accel` field
-- 0.125.0 [Fix] Improved error messages with invalid font sizes. Thanks [@dyk74](https://github.com/dyk74) for raising.
-- 0.124.0 [Enhancement] Attempt to work around some GPS Issues, particularly https://github.com/time4tea/gopro-dashboard-overlay/issues/141 https://github.com/time4tea/gopro-dashboard-overlay/issues/22
-- 0.123.0 [Enhancement] Use better (but every so slightly slower, shouldn't make a huge difference) rotation method for maps - will give much better quality.
-  - Add new gauge - `cairo-gauge-donut` see [docs/xml](docs/xml/examples/06-cairo-gauge-donut)
-  - It looks like this: ![](docs/xml/examples/06-cairo-gauge-donut/06-cairo-gauge-donut-6.png)
-- 0.122.0 [Breaking] Previous change announced in v0.100.0 wasn't actually taking effect. Use --gpx-merge OVERWRITE to prefer values in gpx to gopro.
-- 0.121.0 [Enhancement] Build in some simple ffmpeg profiles - `nvgpu`, `nnvgpu`, `mov`, `vp8`, and `vp9` - see [docs/bin#ffmpeg-profiles](docs/bin#ffmpeg-profiles)
-- 0.120.0 [Fix] Resolve some Python3.10 compatibility issues. Thanks, [@KyleGW](https://github.com/KyleGW)
-- 0.119.0 [PyPI Changes Only] Update README in PyPI so links should work
-- 0.118.0 [Enhancement] Local Map Tiles are now cached in memory, so hugely more performant (affects `--map-style local` only)
-- 0.117.0 [Enhancements] Tentative support for Python 3.12. Thanks to [@JimmyS83](https://github.com/JimmyS83) for the suggestion. Also some small bugfixes for waiting for ffmpeg, and also hopefully removing error message about shared memory using `--double-buffer`
-- 0.116.0 [Docker Changes Only] Support GPU in docker image. See [docs/docker.md](docs/docker.md) Thanks to [@danielgv93](https://github.com/danielgv93) for suggestion.
-
-Older changes are in [CHANGELOG.md](CHANGELOG.md)
+Domestique's own changes are new and not yet broken out into a separate changelog. The history below is
+inherited from the upstream rendering engine this fork is built on - see [CHANGELOG.md](CHANGELOG.md) for the
+full list, or the [upstream project](https://github.com/time4tea/gopro-dashboard-overlay) for anything newer
+than what was forked here.
 

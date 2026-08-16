@@ -39,17 +39,28 @@ Both produce:
 > actual Mac yet - it's a careful port from the working Windows build, not a
 > verified one. Report any issues you hit.
 
-## 2. Run it
+## 2. Install it
 
-Unzip `Domestique-portable.zip` anywhere (or just use `dist/Domestique/` directly
-after step 1) and launch the GUI:
+**Windows**: unzip `Domestique-portable.zip` anywhere (or just use `dist/Domestique/`
+directly after step 1) - it's portable, nothing more to do.
+
+**macOS/Linux**: run `install.sh`, which unzips `Domestique-portable.zip` to a
+destination of your choice (`~/Applications` by default) and makes the bundled
+executables runnable:
+```bash
+./packaging/install.sh
+# or install somewhere else:
+./packaging/install.sh /opt/domestique
+```
+
+## 3. Run it
 
 - **Windows**: double-click `gopro-dashboard-gui.exe`.
-- **macOS/Linux**: `./gopro-dashboard-gui` from a terminal in that folder (`chmod +x`
-  it first if needed). On macOS, since the app isn't code-signed, the first launch
-  may need a right-click → Open (or clear the quarantine flag on a downloaded zip
-  with `xattr -d com.apple.quarantine Domestique-portable.zip`) to get past
-  Gatekeeper.
+- **macOS/Linux**: `install.sh` prints the exact path to run, e.g.
+  `~/Applications/Domestique/gopro-dashboard-gui`. On macOS, since the app isn't
+  code-signed, the first launch may need a right-click → Open (or clear the
+  quarantine flag on a downloaded zip with
+  `xattr -d com.apple.quarantine Domestique-portable.zip`) to get past Gatekeeper.
 
 In the GUI: pick your GoPro clip(s), a FIT/GPX ride file, a profile (`av1_nvenc_*`
 for an NVIDIA GPU, `av1_cpudec_cpuenc*` for CPU-only), a quality/speed preset, and

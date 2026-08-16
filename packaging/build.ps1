@@ -10,10 +10,6 @@
 # ==============================
 
 $ErrorActionPreference = "Stop"
-# This venv's python.exe wrapper writes a benign conda-detection warning to stderr on every
-# invocation; PowerShell 7.3+'s $PSNativeCommandUseErrorActionPreference would otherwise promote
-# that stderr chatter into a terminating error under $ErrorActionPreference = "Stop" above.
-$PSNativeCommandUseErrorActionPreference = $false
 
 $RepoDir = "C:\gopro-dashboard-overlay"
 $Python = "$RepoDir\.venv\Scripts\python.exe"
@@ -24,14 +20,40 @@ $SourceFfmpegDir = "C:\ffmpeg\bin"
 
 Set-Location $RepoDir
 
-& $Python -m PyInstaller --version 2>$null
+# This venv's python.exe wrapper writes a benign conda-detection warning to stderr on every
+# invocation. Under $ErrorActionPreference = "Stop", PowerShell promotes ANY native-command
+# stderr output into a terminating error - via $PSNativeCommandUseErrorActionPreference on
+# PowerShell 7.3+, and via a separate, older mechanism on Windows PowerShell 5.1 too (tested:
+# 2>$null redirection alone does not prevent either, and setting
+# $PSNativeCommandUseErrorActionPreference = $false is a no-op on 5.1 since that variable didn't
+# exist yet). Locally relaxing $ErrorActionPreference to "Continue" around each native call, then
+# checking $LASTEXITCODE by hand, is the one approach that works on both.
+function Invoke-Native {
+    param(
+        [Parameter(Mandatory)][string]$Exe,
+        [switch]$AllowFailure,
+        [Parameter(ValueFromRemainingArguments)][string[]]$ExeArgs
+    )
+    $prevEAP = $ErrorActionPreference
+    $ErrorActionPreference = "Continue"
+    try {
+        & $Exe @ExeArgs
+    } finally {
+        $ErrorActionPreference = $prevEAP
+    }
+    if (-not $AllowFailure -and $LASTEXITCODE -ne 0) {
+        throw "Command failed (exit ${LASTEXITCODE}): $Exe $($ExeArgs -join ' ')"
+    }
+}
+
+Invoke-Native $Python -AllowFailure -m PyInstaller --version 2>$null
 if ($LASTEXITCODE -ne 0) {
     Write-Output "Installing PyInstaller..."
-    & $Python -m pip install pyinstaller
+    Invoke-Native $Python -m pip install pyinstaller
 }
 
 Write-Output "Building executables..."
-& $Python -m PyInstaller $Spec --distpath $DistDir --workpath $BuildDir --clean --noconfirm
+Invoke-Native $Python -m PyInstaller $Spec --distpath $DistDir --workpath $BuildDir --clean --noconfirm
 
 $OutDir = "$DistDir\Domestique"
 
